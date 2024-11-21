@@ -1,0 +1,110 @@
+@use './sass/_vars.scss' as vars;
+@use './sass/login.scss';
+@use './sass/admin.scss';
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+body{
+    margin: 0;
+    background-color: vars.$cinzaClaro;
+}
+a{
+    text-decoration: none;
+}
+section{
+    padding: 3rem 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    hr{
+        width: 1600px;
+        height: 2px;
+        border: none;
+
+    }
+}
+button{
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.logo{
+    width: 320px;
+}
+
+.nav-bar{
+    position: fixed;
+    z-index: 10;
+    right: 0;
+    top: 0;
+    width: 300px;
+    height: 100vh;
+    translate: 220px 0;
+    background-color: vars.$azul;
+    transition: .3s translate;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    .nav-mini{
+        align-self: flex-start;
+        svg{
+            transition: .3s;
+        }
+    }
+    .nav-logo{
+        transition: .3s;
+        opacity: 0;
+        border-bottom: solid 1px white;
+        width: 100%;
+        display: flex;
+        padding: 5px 0;
+        .logo-navbar{
+            width: 200px;
+            margin: 0 auto;
+        }
+    }
+    .nav-links{
+        transition: .3s;
+        opacity: 0;
+        a{
+            cursor: pointer;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            border-bottom: solid 1px white;
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+    }
+}
+@keyframes ocultar{
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+}
+.nav-bar.ativo{
+    translate: 0 0;
+    .nav-mini{
+        svg{
+            rotate: -90deg;
+            opacity: 0;
+            animation: ocultar .3s linear;
+        }
+    }
+    .nav-links, .nav-logo{
+        opacity: 1;
+    }
+}

@@ -1,0 +1,43 @@
+@use './_vars.scss' as vars;
+
+.page-login{
+    background-color: vars.$azul;
+    hr{
+        width: 1600px;
+        background-color: white;
+    }
+    .form-login{
+        width: 500px;
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        input,select{
+            height: 45px;
+            border-radius: 10px;
+            border: none;
+            padding-left: 1rem;
+        }
+        .input{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            .texto-input{
+                font-size: 1.25rem;
+                color: white;
+                font-weight: 600;
+                // margin-left: 1rem;
+            }
+        }
+        .btn-login{
+            font-weight: 700;
+            width: 180px;
+            height: 50px;
+            background-color: vars.$amarelo;
+            align-self: center;
+            &:hover{
+                background-color: vars.$amareloHover;
+            }
+        }
+    }
+}
