@@ -1,6 +1,7 @@
 @use './sass/_vars.scss' as vars;
 @use './sass/login.scss';
 @use './sass/admin.scss';
+@use './sass/widgets.scss';
 
 *{
     font-family: 'Poppins', sans-serif;
@@ -65,6 +66,7 @@ button{
         border-bottom: solid 1px white;
         width: 100%;
         display: flex;
+        justify-content: center;
         padding: 5px 0;
         .logo-navbar{
             width: 200px;

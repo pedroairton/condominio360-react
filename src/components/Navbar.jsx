@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { GoTriangleLeft } from "react-icons/go";
 import LogoWhite from "../assets/logo360white.png";
 // import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // icons navbar
 import { CiMail } from "react-icons/ci";
@@ -29,7 +30,9 @@ const Navbar = () => {
         <GoTriangleLeft size={70} color="#FFF" />
       </div>
       <div className="nav-logo">
-        <img className="logo-navbar" src={LogoWhite} alt="" />
+        <Link to={"/admin"}>
+          <img className="logo-navbar" src={LogoWhite} alt="" />
+        </Link>
       </div>
       <div className="nav-links">
         <a>
@@ -40,10 +43,10 @@ const Navbar = () => {
           <TfiPackage size={40} color="#FFF" />
           <span>Encomendas</span>
         </a>
-        <a>
+        <Link to={"/admin/moradores"}>
           <BsBuilding size={40} color="#FFF" />
           <span>Moradores</span>
-        </a>
+        </Link>
         <a>
           <FaRegCalendarAlt size={40} color="#FFF" />
           <span>Reservas de Locais</span>
