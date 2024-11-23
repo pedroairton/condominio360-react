@@ -110,3 +110,24 @@ button{
         opacity: 1;
     }
 }
+.ant-modal-content{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    .ant-modal-title{
+        font-size: 1.5rem;
+    }
+    .ant-modal-body{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        h3{
+            font-size: 1.15rem;
+            font-weight: 500;
+        }
+        h4{
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+    }
+}

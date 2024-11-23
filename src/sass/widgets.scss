@@ -19,6 +19,30 @@
             font-weight: 600;
         }
         border-bottom: solid 1px black;
+        .add{
+            margin-left: auto;
+            position: relative;
+            &::before{
+                content: '';
+                background-color: black;
+                width: 50%;
+                height: 50%;
+                position: absolute;
+                top: 25%;
+                left: 25%;
+            }
+            svg{
+                vertical-align: middle;
+                cursor: pointer;
+                transition: .3s;
+                position: relative;
+                z-index: 1;
+                &:hover{
+                    scale: 1.1;
+                    rotate: 180deg;
+                }
+            }
+        }
     }
     .cards-widget{
         display: flex;
