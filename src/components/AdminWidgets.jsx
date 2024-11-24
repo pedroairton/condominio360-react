@@ -23,38 +23,6 @@ const AdminWidgets = () => {
       {/* componentizar widgets no futuro */}
       {/* mensagens */}
       <WidgetMensagens/>
-      <div className="widget">
-        <div className="titulo-widget">
-          <CiMail size={50} /> <h2>Mensagens do Condomínio</h2>
-        </div>
-        <div className="cards-widget">
-          <div className="card">
-            <div className="info-card-1">
-              <FaRegClock size={30} /> <h3>20/11/2024</h3> <h3>00:57</h3>
-            </div>
-            <p className="desc-card">
-              Manutenção agendada da caixa d'água do bloco A para próxima semana
-            </p>
-          </div>
-          <div className="card">
-            <div className="info-card-1">
-              <FaRegClock size={30} /> <h3>20/11/2024</h3> <h3>00:57</h3>
-            </div>
-            <p className="desc-card">
-              Manutenção agendada da caixa d'água do bloco A para próxima semana
-            </p>
-          </div>
-          <div className="card">
-            <div className="info-card-1">
-              <FaRegClock size={30} /> <h3>20/11/2024</h3> <h3>00:57</h3>
-            </div>
-            <p className="desc-card">
-              Manutenção agendada da caixa d'água do bloco A para próxima semana
-            </p>
-          </div>
-        </div>
-        <button className="btn-widget">Todas as mensagens</button>
-      </div>
       {/* encomendas */}
       <div className="widget">
         <div className="titulo-widget">
