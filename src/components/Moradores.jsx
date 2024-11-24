@@ -1,12 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
+
 import { BsBuilding } from "react-icons/bs";
 import { FaUserLarge } from "react-icons/fa6";
 import { FaHouseUser } from "react-icons/fa";
 import { FaBuildingCircleArrowRight } from "react-icons/fa6";
 import { IoAddCircle } from "react-icons/io5";
 import { AiOutlineLoading } from "react-icons/ai";
-
-import { useState, useEffect } from "react";
 
 import { Button, Modal } from "antd";
 
@@ -15,22 +14,22 @@ const Moradores = () => {
     window.location.hostname === "localhost"
       ? "http://localhost:8080"
       : `${window.location.origin}`;
-  useEffect(() => {
-    const fetchMoradores = async () => {
-      try {
-        const response = await fetch(`${apiUrl}/moradores`);
+  const fetchMoradores = async () => {
+    try {
+      const response = await fetch(`${apiUrl}/moradores`);
 
-        const data = await response.json();
+      const data = await response.json();
 
-        if (data) {
-          setMoradores(data);
-        }
-        // console.log(data);
-        return data;
-      } catch (error) {
-        console.log(error);
+      if (data) {
+        setMoradores(data);
       }
-    };
+      // console.log(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
     fetchMoradores();
   }, []);
 
@@ -84,7 +83,7 @@ const Moradores = () => {
     bloco: "",
     responsavel: "",
     email: "",
-    residencia: "",
+    tipo_residente: "",
   });
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -93,22 +92,27 @@ const Moradores = () => {
       [name]: value,
     }));
   };
-  const submitForm = (e) => {
-    console.log("Dados submetidos: ", formData);
-    fetch(`${apiUrl}/admin/cadastro`, {
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json",
-      },
-
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-
-      .then((data) => console.log(data))
-
-      .catch((error) => console.log(error));
+  const submitForm = async () => {
+    try {
+      console.log("Dados submetidos: ", formData);
+      const token = localStorage.getItem("authToken");
+      const response = await fetch(`${apiUrl}/admin/cadastro`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        throw new Error("Erro ao cadastrar usuário");
+      }
+      const data = await response.json();
+      console.log("Usuário cadastrado com sucesso: ", data);
+      await fetchMoradores();
+    } catch (error) {
+      console.error("Erro ao cadastrar usuário: ", error);
+    }
   };
   return (
     <section className="page-moradores">
@@ -139,19 +143,18 @@ const Moradores = () => {
           className="form-morador"
           onSubmit={(e) => {
             e.preventDefault();
-            console.log("submited");
             submitForm();
           }}
         >
           <div className="input">
-            <label htmlFor="apt">Apartamento:</label>
+            <label htmlFor="apartamento">Apartamento:</label>
             <input
               type="text"
               id="apartamento"
               name="apartamento"
               placeholder="Apartamento do Morador"
-              value={formData.apartamento} // Controle do valor
-              onChange={handleInputChange} // Atualiza o estado
+              value={formData.apartamento}
+              onChange={handleInputChange}
               required
             />
           </div>
@@ -160,8 +163,8 @@ const Moradores = () => {
             <select
               name="bloco"
               id="bloco"
-              value={formData.bloco} // Controle do valor
-              onChange={handleInputChange} // Atualiza o estado
+              value={formData.bloco}
+              onChange={handleInputChange}
               required
             >
               <option value="" disabled>
@@ -179,8 +182,8 @@ const Moradores = () => {
               id="responsavel"
               name="responsavel"
               placeholder="Responsável pelo Apartamento"
-              value={formData.responsavel} // Controle do valor
-              onChange={handleInputChange} // Atualiza o estado
+              value={formData.responsavel}
+              onChange={handleInputChange}
               required
             />
           </div>
@@ -191,18 +194,18 @@ const Moradores = () => {
               id="email"
               name="email"
               placeholder="E-mail do Responsável"
-              value={formData.email} // Controle do valor
-              onChange={handleInputChange} // Atualiza o estado
+              value={formData.email}
+              onChange={handleInputChange}
               required
             />
           </div>
           <div className="input">
-            <label htmlFor="residencia">Tipo de Residência:</label>
+            <label htmlFor="tipo_residente">Tipo de Residência:</label>
             <select
-              name="residencia"
-              id="residencia"
-              value={formData.residencia} // Controle do valor
-              onChange={handleInputChange} // Atualiza o estado
+              name="tipo_residente"
+              id="tipo_residente"
+              value={formData.tipo_residente}
+              onChange={handleInputChange}
               required
             >
               <option value="" disabled>
@@ -245,7 +248,7 @@ const Moradores = () => {
         <div className="titulo-widget">
           <BsBuilding size={50} /> <h2>Moradores</h2>
           <div className="add" onClick={showModalAsync}>
-            <IoAddCircle size={60} color="#F6C233" stroke="red" />
+            <IoAddCircle size={60} color="#F6C233" />
           </div>
         </div>
         {moradores.length > 0 ? (

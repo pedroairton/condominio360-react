@@ -149,6 +149,35 @@ button{
                     border: solid 1px vars.$azul;
                     border-radius: 15px;
                 }
+                textarea{
+                    width: 100%;
+                    padding-top: 5px;
+                    padding-left: 10px;
+                    border: solid 1px vars.$azul;
+                    border-radius: 15px;
+                }
+            }
+        }
+        .form-mensagem{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            .input{
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                label{
+                    margin-left: 5px;
+                    font-size: 1.25rem;
+                }
+                textarea{
+                    aspect-ratio: 2/1;
+                    width: 100%;
+                    padding-top: 10px;
+                    padding-left: 10px;
+                    border: solid 1px vars.$azul;
+                    border-radius: 15px;
+                }
             }
         }
     }

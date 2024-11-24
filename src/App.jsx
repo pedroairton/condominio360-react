@@ -4,6 +4,7 @@ import Login from "./components/Login";
 import Admin from "./components/Admin";
 import Moradores from "./components/Moradores";
 import AdminWidgets from "./components/AdminWidgets";
+import Mensagens from "./components/Mensagens";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/admin" element={<Admin />}>
             <Route path="/admin/" element={<AdminWidgets/>}></Route>
             <Route path="/admin/moradores" element={<Moradores/>}></Route>
+            <Route path="/admin/mensagens" element={<Mensagens/>}></Route>
           </Route>
         </Routes>
       </Router>

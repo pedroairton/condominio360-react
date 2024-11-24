@@ -35,10 +35,10 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="nav-links">
-        <a>
+        <Link to={"/admin/mensagens"}>
           <CiMail size={50} color="#FFF" />
           <span>Mensagens do Condomínio</span>
-        </a>
+        </Link>
         <a>
           <TfiPackage size={40} color="#FFF" />
           <span>Encomendas</span>
@@ -51,6 +51,9 @@ const Navbar = () => {
           <FaRegCalendarAlt size={40} color="#FFF" />
           <span>Reservas de Locais</span>
         </a>
+        <Link to={"/"}>
+        <span>login (debug)</span>
+        </Link>
       </div>
     </nav>
   );
