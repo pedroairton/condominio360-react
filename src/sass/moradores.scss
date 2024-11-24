@@ -1,0 +1,8 @@
+@use './_vars.scss' as vars;
+
+.page-moradores{
+    .form-morador{
+        display: flex;
+        flex-direction: column;
+    }
+}

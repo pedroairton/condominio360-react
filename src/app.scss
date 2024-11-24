@@ -2,6 +2,7 @@
 @use './sass/login.scss';
 @use './sass/admin.scss';
 @use './sass/widgets.scss';
+@use './sass/moradores.scss';
 
 *{
     font-family: 'Poppins', sans-serif;
@@ -129,5 +130,29 @@ button{
             font-size: 1.1rem;
             font-weight: 500;
         }
+    }
+}
+.modal-form{
+    .ant-modal-content{
+        .form-morador{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            .input{
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                input[type=text], input[type=email], select{
+                    padding-left: 10px;
+                    // width: 100%;
+                    height: 30px;
+                    border: solid 1px vars.$azul;
+                    border-radius: 15px;
+                }
+            }
+        }
+    }
+    .btn-submit-form{
+        background-color: vars.$azul;
     }
 }
