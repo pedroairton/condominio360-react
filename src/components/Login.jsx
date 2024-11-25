@@ -8,7 +8,7 @@ const Login = () => {
   const apiUrl =
     window.location.hostname === "localhost"
       ? "http://localhost:8080"
-      : `https://supabase-api-express.vercel.app/`;
+      : `https://supabase-api-express.vercel.app`;
 
   const [formData, setFormData] = useState({
     user: "",
