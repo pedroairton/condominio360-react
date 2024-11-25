@@ -9,7 +9,7 @@ const WidgetMensagens = () => {
   const apiUrl =
     window.location.hostname === "localhost"
       ? "http://localhost:8080"
-      : `${window.location.origin}`;
+      : `https://supabase-api-express.vercel.app/`;
   const fetchMensagens = async () => {
     try {
       const response = await fetch(`${apiUrl}/mensagens?limit=3`);

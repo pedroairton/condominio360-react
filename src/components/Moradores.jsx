@@ -13,7 +13,7 @@ const Moradores = () => {
   const apiUrl =
     window.location.hostname === "localhost"
       ? "http://localhost:8080"
-      : `${window.location.origin}`;
+      : `https://supabase-api-express.vercel.app/`;
   const fetchMoradores = async () => {
     try {
       const response = await fetch(`${apiUrl}/moradores`);

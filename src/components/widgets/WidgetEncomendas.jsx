@@ -8,7 +8,7 @@ const WidgetEncomendas = () => {
   const apiUrl =
     window.location.hostname === "localhost"
       ? "http://localhost:8080"
-      : `${window.location.origin}`;
+      : `https://supabase-api-express.vercel.app/`;
   const fetchEncomendas = async () => {
     try {
       const token = localStorage.getItem("authToken");
