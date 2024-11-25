@@ -96,6 +96,9 @@
                 font-weight: 700;
                 font-size: 1.25rem;
                 align-self: center;
+                a{
+                    color: black;
+                }
                 &:hover{
                     background-color: vars.$amareloHover;
                 }

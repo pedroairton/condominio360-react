@@ -39,10 +39,10 @@ const Navbar = () => {
           <CiMail size={50} color="#FFF" />
           <span>Mensagens do Condomínio</span>
         </Link>
-        <a>
+        <Link to={"/admin/encomendas"}>
           <TfiPackage size={40} color="#FFF" />
           <span>Encomendas</span>
-        </a>
+        </Link>
         <Link to={"/admin/moradores"}>
           <BsBuilding size={40} color="#FFF" />
           <span>Moradores</span>
@@ -51,9 +51,9 @@ const Navbar = () => {
           <FaRegCalendarAlt size={40} color="#FFF" />
           <span>Reservas de Locais</span>
         </a>
-        <Link to={"/"}>
+        {/* <Link to={"/"}>
         <span>login (debug)</span>
-        </Link>
+        </Link> */}
       </div>
     </nav>
   );

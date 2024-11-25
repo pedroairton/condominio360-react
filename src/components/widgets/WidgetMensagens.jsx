@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineLoading } from "react-icons/ai";
 import { CiMail } from "react-icons/ci";
 import { FaRegClock } from "react-icons/fa";
+import {Link} from 'react-router-dom'
 
 
-const WidgetMoradores = () => {
+const WidgetMensagens = () => {
   const apiUrl =
     window.location.hostname === "localhost"
       ? "http://localhost:8080"
       : `${window.location.origin}`;
   const fetchMensagens = async () => {
     try {
-      const response = await fetch(`${apiUrl}/mensagens`);
+      const response = await fetch(`${apiUrl}/mensagens?limit=3`);
 
       const data = await response.json();
 
@@ -69,9 +70,11 @@ const WidgetMoradores = () => {
           </div>
         </div>
       )}
-      <button className="btn-widget">Todos os moradores</button>
+      <button className="btn-widget">
+        <Link to={"/admin/mensagens"}>Todas as mensagens</Link>
+      </button>
     </div>
   );
 };
 
-export default WidgetMoradores;
+export default WidgetMensagens;
