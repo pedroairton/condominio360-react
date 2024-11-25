@@ -8,7 +8,7 @@ const Login = () => {
   const apiUrl =
     window.location.hostname === "localhost"
       ? "http://localhost:8080"
-      : `${window.location.origin}`;
+      : `${window.location.origin}/server`;
 
   const [formData, setFormData] = useState({
     user: "",
@@ -25,6 +25,7 @@ const Login = () => {
   const submitForm = async () => {
     console.log("Login enviado: ", formData);
     try {
+      console.log(`${apiUrl}/admin/login`)
       const response = await fetch(`${apiUrl}/admin/login`, {
         method: "POST",
         headers: {
