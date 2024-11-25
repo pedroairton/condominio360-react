@@ -1,0 +1,9 @@
+@use './_vars.scss' as vars;
+
+@media (max-width: 1366px) {
+    .page-admin{
+        .widgets{
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+}
