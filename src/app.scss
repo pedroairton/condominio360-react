@@ -1,212 +1,273 @@
-@use './sass/_vars.scss' as vars;
-@use './sass/login.scss';
-@use './sass/admin.scss';
-@use './sass/widgets.scss';
-@use './sass/moradores.scss';
-@use './sass/medias.scss';
+@use "./sass/_vars.scss" as vars;
+@use "./sass/login.scss";
+@use "./sass/admin.scss";
+@use "./sass/widgets.scss";
+@use "./sass/moradores.scss";
+@use "./sass/medias.scss";
 
-*{
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
 }
-body{
-    margin: 0;
-    background-color: vars.$cinzaClaro;
+body {
+  margin: 0;
+  background-color: vars.$cinzaClaro;
 }
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
-section{
-    padding: 3rem 0;
+section {
+  padding: 3rem 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  hr {
+    width: 1600px;
+    height: 2px;
+    border: none;
+  }
+}
+button {
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logo {
+  width: 320px;
+}
+
+.nav-bar {
+  position: fixed;
+  z-index: 10;
+  right: 0;
+  top: 0;
+  width: 300px;
+  height: 100vh;
+  translate: 220px 0;
+  background-color: vars.$azul;
+  transition: 0.3s translate;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  .nav-mini {
+    align-self: flex-start;
+    svg {
+      transition: 0.3s;
+    }
+  }
+  .nav-logo {
+    transition: 0.3s;
+    opacity: 0;
+    border-bottom: solid 1px white;
     width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 50px;
-    hr{
-        width: 1600px;
-        height: 2px;
-        border: none;
-
+    justify-content: center;
+    padding: 5px 0;
+    .logo-navbar {
+      width: 200px;
+      margin: 0 auto;
     }
+  }
+  .nav-links {
+    transition: 0.3s;
+    opacity: 0;
+    a {
+      cursor: pointer;
+      color: white;
+      font-size: 1.25rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      border-bottom: solid 1px white;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+  }
 }
-button{
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: .3s;
+@keyframes ocultar {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
-
-.logo{
-    width: 320px;
+.nav-bar.ativo {
+  translate: 0 0;
+  .nav-mini {
+    svg {
+      rotate: -90deg;
+      opacity: 0;
+      animation: ocultar 0.3s linear;
+    }
+  }
+  .nav-links,
+  .nav-logo {
+    opacity: 1;
+  }
 }
-
-.nav-bar{
-    position: fixed;
-    z-index: 10;
-    right: 0;
-    top: 0;
-    width: 300px;
-    height: 100vh;
-    translate: 220px 0;
-    background-color: vars.$azul;
-    transition: .3s translate;
-    padding: 0 1rem;
+.ant-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  .ant-modal-title {
+    font-size: 1.5rem;
+  }
+  .ant-modal-body {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    .nav-mini{
-        align-self: flex-start;
-        svg{
-            transition: .3s;
-        }
+    gap: 1rem;
+    h3 {
+      font-size: 1.15rem;
+      font-weight: 500;
     }
-    .nav-logo{
-        transition: .3s;
-        opacity: 0;
-        border-bottom: solid 1px white;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        padding: 5px 0;
-        .logo-navbar{
-            width: 200px;
-            margin: 0 auto;
-        }
+    h4 {
+      font-size: 1.1rem;
+      font-weight: 500;
     }
-    .nav-links{
-        transition: .3s;
-        opacity: 0;
-        a{
-            cursor: pointer;
-            color: white;
-            font-size: 1.25rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            border-bottom: solid 1px white;
-            gap: 1rem;
-            padding: 1rem 0;
-        }
-    }
+  }
 }
-@keyframes ocultar{
-    from{
-        opacity: 1;
-    }
-    to{
-        opacity: 0;
-    }
-}
-.nav-bar.ativo{
-    translate: 0 0;
-    .nav-mini{
-        svg{
-            rotate: -90deg;
-            opacity: 0;
-            animation: ocultar .3s linear;
-        }
-    }
-    .nav-links, .nav-logo{
-        opacity: 1;
-    }
-}
-.ant-modal-content{
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    .ant-modal-title{
-        font-size: 1.5rem;
-    }
-    .ant-modal-body{
+.modal-form {
+  .ant-modal-content {
+    .form-morador {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      .input {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
-        h3{
-            font-size: 1.15rem;
-            font-weight: 500;
+        gap: 5px;
+        input[type="text"],
+        input[type="email"],
+        select {
+          padding-left: 10px;
+          // width: 100%;
+          height: 30px;
+          border: solid 1px vars.$azul;
+          border-radius: 15px;
         }
-        h4{
-            font-size: 1.1rem;
-            font-weight: 500;
+        textarea {
+          width: 100%;
+          padding-top: 5px;
+          padding-left: 10px;
+          border: solid 1px vars.$azul;
+          border-radius: 15px;
         }
+      }
     }
+    .form-mensagem {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      .input {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        label {
+          margin-left: 5px;
+          font-size: 1.25rem;
+        }
+        textarea {
+          aspect-ratio: 2/1;
+          width: 100%;
+          padding-top: 10px;
+          padding-left: 10px;
+          border: solid 1px vars.$azul;
+          border-radius: 15px;
+        }
+      }
+    }
+    .form-encomenda {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      .input {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        input[type="text"],
+        input[type="email"],
+        select {
+          padding-left: 10px;
+          // width: 100%;
+          height: 30px;
+          border: solid 1px vars.$azul;
+          border-radius: 15px;
+        }
+        textarea {
+          width: 100%;
+          padding-top: 5px;
+          padding-left: 10px;
+          border: solid 1px vars.$azul;
+          border-radius: 15px;
+        }
+      }
+    }
+  }
+  .btn-submit-form {
+    background-color: vars.$azul;
+  }
 }
-.modal-form{
-    .ant-modal-content{
-        .form-morador{
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            .input{
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-                input[type=text], input[type=email], select{
-                    padding-left: 10px;
-                    // width: 100%;
-                    height: 30px;
-                    border: solid 1px vars.$azul;
-                    border-radius: 15px;
-                }
-                textarea{
-                    width: 100%;
-                    padding-top: 5px;
-                    padding-left: 10px;
-                    border: solid 1px vars.$azul;
-                    border-radius: 15px;
-                }
-            }
+.modal-reservas {
+  .ant-modal-content {
+    .reserva {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin: 0 auto;
+      .react-calendar {
+        border-radius: 15px;
+        border: solid 2px vars.$azul;
+        .react-calendar__navigation {
+          border-radius: 15px 15px 0 0;
+          background-color: #f0f0f0;
+          border-bottom: solid 2px vars.$azul;
         }
-        .form-mensagem{
+        .react-calendar__tile--active {
+          background-color: vars.$azul;
+        }
+      }
+      .input {
+        label {
+          display: flex;
+          flex-direction: column;
+          select {
+            padding-left: 5px;
+            width: 200px;
+            height: 30px;
+            border: solid 1px vars.$azul;
+            border-radius: 15px;
+        }
+        input[type="time"] {
+            width: 120px;
+            height: 30px;
+            padding-left: 1rem;
+            border-radius: 15px;
+            border: solid 1px vars.$azul;
+          }
+        }
+      }
+      .data-selecionada{
+        ul{
+            margin-top: 1rem;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            .input{
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-                label{
-                    margin-left: 5px;
-                    font-size: 1.25rem;
-                }
-                textarea{
-                    aspect-ratio: 2/1;
-                    width: 100%;
-                    padding-top: 10px;
-                    padding-left: 10px;
-                    border: solid 1px vars.$azul;
-                    border-radius: 15px;
-                }
+            gap: 5px;
+            padding: 0;
+            li{
+                list-style: none;
             }
         }
-        .form-encomenda{
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            .input{
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-                input[type=text], input[type=email], select{
-                    padding-left: 10px;
-                    // width: 100%;
-                    height: 30px;
-                    border: solid 1px vars.$azul;
-                    border-radius: 15px;
-                }
-                textarea{
-                    width: 100%;
-                    padding-top: 5px;
-                    padding-left: 10px;
-                    border: solid 1px vars.$azul;
-                    border-radius: 15px;
-                }
-            }
-        }
+      }
     }
-    .btn-submit-form{
-        background-color: vars.$azul;
-    }
+  }
+  .btn-submit-form {
+    background-color: vars.$azul;
+  }
 }

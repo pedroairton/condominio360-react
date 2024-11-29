@@ -6,6 +6,7 @@ import Moradores from "./components/Moradores";
 import AdminWidgets from "./components/AdminWidgets";
 import Mensagens from "./components/Mensagens";
 import Encomendas from "./components/Encomendas";
+import Reservas from "./components/Reservas";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/admin/moradores" element={<Moradores/>}></Route>
             <Route path="/admin/mensagens" element={<Mensagens/>}></Route>
             <Route path="/admin/encomendas" element={<Encomendas/>}></Route>
+            <Route path="/admin/reservas" element={<Reservas/>}></Route>
           </Route>
         </Routes>
       </Router>

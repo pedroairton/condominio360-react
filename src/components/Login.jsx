@@ -35,6 +35,7 @@ const Login = () => {
       });
   
       if (!response.ok) {
+        window.alert("Credenciais incorretas")
         throw new Error('Erro na requisição');
       }
       else{

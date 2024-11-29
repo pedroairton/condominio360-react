@@ -1,9 +1,48 @@
-@use './_vars.scss' as vars;
+@use "./_vars.scss" as vars;
 
-@media (max-width: 1366px) {
-    .page-admin{
-        .widgets{
-            grid-template-columns: repeat(1, 1fr);
+@media (max-width: 1600px) {
+  .page-admin{
+    .nav-bar{
+        translate: 250px 0;
+      }
+    hr{
+        width: 95%;
+    };
+    .widgets{
+        gap: 2rem 4rem;
+        .widget{
+            width: 540px;
+            .cards-widget{
+                .card{
+                    .desc-card{
+                        font-size: 1rem;
+                    }
+                }
+            }
         }
     }
+  }
+  .page-login {
+    hr {
+      width: 95%;
+    }
+  }
+}
+@media (max-width: 1366px) {
+  .page-admin {
+    .widgets {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}
+
+@media (max-width: 580px) {
+  .page-login {
+    .logo {
+      width: 300px;
+    }
+    .form-login {
+      width: 95%;
+    }
+  }
 }
