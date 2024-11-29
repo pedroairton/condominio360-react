@@ -60,7 +60,7 @@ const Reservas = () => {
   }, [dataSelecionada]);
 
   const fetchReservas = async () => {
-    const response = await fetch("http://localhost:8080/reservas");
+    const response = await fetch("https://supabase-api-express.vercel.app/reservas");
     const data = await response.json();
     setReservas(data);
   };
@@ -70,7 +70,7 @@ const Reservas = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/reservas/${dataFormatada}`
+        `https://supabase-api-express.vercel.app/reservas/${dataFormatada}`
       );
       const data = await response.json();
       setReservasDia(data);
@@ -120,7 +120,7 @@ const Reservas = () => {
       return;
     }
     try {
-      const response = await fetch("http://localhost:8080/admin/reserva", {
+      const response = await fetch("https://supabase-api-express.vercel.app/admin/reserva", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(novaReserva),
