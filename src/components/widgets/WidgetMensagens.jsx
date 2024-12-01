@@ -53,7 +53,7 @@ const WidgetMensagens = () => {
             >
               <div className="info-card-1">
                 <FaRegClock size={30} />{" "}
-                <h3>{mensagem.created_at.split("T")[0]}</h3>
+                <h3>{new Intl.DateTimeFormat('pt-BR').format(new Date(mensagem.created_at))}</h3>
                 <h3>
                   {mensagem.created_at.split("T")[1].split("+")[0].slice(0, 5)}
                 </h3>

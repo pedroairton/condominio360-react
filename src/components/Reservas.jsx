@@ -7,6 +7,8 @@ import { IoCalendarOutline } from "react-icons/io5";
 import { FaRegClock } from "react-icons/fa";
 import { IoAddCircle } from "react-icons/io5";
 import { Modal, Button } from "antd";
+// updel
+import { FaRegTrashAlt } from "react-icons/fa";
 
 const Reservas = () => {
   const [dataSelecionada, setDataSelecionada] = useState(new Date());
@@ -60,9 +62,35 @@ const Reservas = () => {
   }, [dataSelecionada]);
 
   const fetchReservas = async () => {
-    const response = await fetch("https://supabase-api-express.vercel.app/reservas");
+    const response = await fetch(
+      "https://supabase-api-express.vercel.app/reservas"
+    );
     const data = await response.json();
     setReservas(data);
+  };
+  const delReserva = async () => {
+    try {
+      const token = localStorage.getItem("authToken");
+      const response = await fetch(
+        `https://supabase-api-express.vercel.app/admin/reserva/del/${reservaSelected.id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Erro ao deletar reserva");
+      }
+      const data = await response.json();
+      console.log("Reserva deletada com sucesso: ", data);
+      alert("Reserva deletada");
+      await fetchReservas();
+    } catch (error) {
+      console.error("Erro ao deletar reserva: ", error);
+    }
   };
   //   reservas por data
   const fetchReservasPorData = async (data) => {
@@ -104,7 +132,10 @@ const Reservas = () => {
       local_reservado: local,
       horario_inicial: horarioInicial,
       horario_final: horarioFinal,
+      apt_responsavel: localStorage.getItem("apt"),
+      bloco_apt: localStorage.getItem("bloco"),
     };
+    console.log(novaReserva);
     // Validação 1: Horário de início antes do fim
     if (new Date(horarioInicial) >= new Date(horarioFinal)) {
       alert("O horário de início deve ser antes do horário final.");
@@ -235,7 +266,7 @@ const Reservas = () => {
                 ))}
               </ul>
             ) : (
-              <p>Não há reservas para esta data.</p>
+              <p>Não há reservas feitas para esta data.</p>
             )}
           </div>
         </div>
@@ -249,6 +280,25 @@ const Reservas = () => {
       >
         {reservaSelected && (
           <>
+            {(localStorage.getItem("apt") === reservaSelected.apt_responsavel &&
+              localStorage.getItem("bloco") === reservaSelected.bloco_apt) ||
+            localStorage.getItem("tipo") === "admin" ? (
+              <div className="updel">
+                <button
+                  onClick={() => {
+                    if (confirm("Deletar esta reserva ?") == true) {
+                      delReserva();
+                    } else {
+                      console.log("cancelado");
+                    }
+                  }}
+                >
+                  <FaRegTrashAlt size={25} color="red" />
+                </button>
+              </div>
+            ) : (
+              <></>
+            )}
             <div>
               <h3>Reserva: </h3>
               <h3>
@@ -256,21 +306,40 @@ const Reservas = () => {
               </h3>
             </div>
             <div>
-              <h3>Data: </h3>
+              <h3>Reservado por: </h3>
               <h3>
-                <b>{reservaSelected.horario_inicial}</b>
+                <b>
+                  Apt: {reservaSelected.apt_responsavel} - Bloco{" "}
+                  {reservaSelected.bloco_apt}
+                </b>
               </h3>
             </div>
             <div>
-              <h3>Data: </h3>
+              <h3>Data de início: </h3>
               <h3>
-                <b>{reservaSelected.horario_final}</b>
+                <b>
+                  {new Intl.DateTimeFormat("pt-BR").format(
+                    new Date(reservaSelected.horario_inicial)
+                  )}{" "}
+                  - {reservaSelected.horario_inicial.split("T")[1]}
+                </b>
+              </h3>
+            </div>
+            <div>
+              <h3>Data de término: </h3>
+              <h3>
+                <b>
+                  {new Intl.DateTimeFormat("pt-BR").format(
+                    new Date(reservaSelected.horario_final)
+                  )}{" "}
+                  - {reservaSelected.horario_final.split("T")[1]}
+                </b>
               </h3>
             </div>
           </>
         )}
       </Modal>
-      <h3>Reservas Feitas:</h3>
+      {/* <h3>Reservas Feitas:</h3>
       <ul>
         {reservas.map((reserva) => (
           <li key={reserva.id}>
@@ -279,7 +348,7 @@ const Reservas = () => {
             {new Date(reserva.horario_final).toLocaleString()}
           </li>
         ))}
-      </ul>
+      </ul> */}
       <div className="widget">
         <div className="titulo-widget">
           <FaRegCalendarAlt size={50} /> <h2>Reservas de Locais</h2>
@@ -303,20 +372,36 @@ const Reservas = () => {
                     <div className="info-card-2">
                       <IoCalendarOutline size={30} />
                       <h3>
-                        {new Date(reserva.horario_inicial).toLocaleString()}
+                        {
+                          new Date(reserva.horario_inicial)
+                            .toLocaleString()
+                            .split(",")[0]
+                        }
                       </h3>
                     </div>
                     <div className="info-card-2">
                       <FaRegClock size={30} />
                       <span>
-                        {new Date(reserva.horario_inicial).toLocaleString()} -{" "}
-                        {new Date(reserva.horario_final).toLocaleString()}
+                        {
+                          new Date(reserva.horario_inicial)
+                            .toLocaleString()
+                            .split(" ")[1]
+                        }{" "}
+                        -{" "}
+                        {
+                          new Date(reserva.horario_final)
+                            .toLocaleString()
+                            .split(" ")[1]
+                        }
                       </span>
                     </div>
                   </div>
                 </div>
                 <div className="desc-icon">
-                  <p className="desc-card">Reservado por 202-A</p>
+                  <p className="desc-card">
+                    Reservado por {reserva.apt_responsavel} -{" "}
+                    {reserva.bloco_apt}
+                  </p>
                 </div>
               </div>
             ))}

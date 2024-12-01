@@ -5,8 +5,11 @@ import { FaRegClock } from "react-icons/fa";
 import { Button, Modal } from "antd";
 import { AiOutlineLoading } from "react-icons/ai";
 import { IoAddCircle } from "react-icons/io5";
+// updel
+import { FaRegTrashAlt } from "react-icons/fa";
 
-const Mensagens = () => {
+const Mensagens = (tipo, apt, bloco) => {
+  console.log(tipo, apt, bloco);
   const apiUrl =
     window.location.hostname === "localhost"
       ? "https://supabase-api-express.vercel.app"
@@ -30,7 +33,9 @@ const Mensagens = () => {
     }
   };
   const mensagemReduzida = (message, limit = 95) => {
-    return message.length > limit ? message.substring(0, limit) + '...' : message;
+    return message.length > limit
+      ? message.substring(0, limit) + "..."
+      : message;
   };
   useEffect(() => {
     fetchMensagens();
@@ -113,6 +118,30 @@ const Mensagens = () => {
       console.error("Erro ao cadastrar mensagem: ", error);
     }
   };
+  const delMensagem = async () => {
+    try {
+      const token = localStorage.getItem("authToken");
+      const response = await fetch(
+        `${apiUrl}/admin/mensagem/del/${mensagemSelected.id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Erro ao deletar mensagem");
+      }
+      const data = await response.json();
+      console.log("Mensagem deletada com sucesso: ", data);
+      alert("Mensagem deletada");
+      await fetchMensagens();
+    } catch (error) {
+      console.error("Erro ao deletar mensagem: ", error);
+    }
+  };
   return (
     <section className="page-mensagens">
       <Modal
@@ -168,8 +197,26 @@ const Mensagens = () => {
       >
         {mensagemSelected && (
           <>
+            {localStorage.getItem("tipo") === "admin" ? (
+              <div className="updel">
+                <button
+                  onClick={() => {
+                    if (confirm("Deletar esta mensagem ?") == true) {
+                      delMensagem();
+                    } else {
+                      console.log("cancelado");
+                    }
+                  }}
+                >
+                  <FaRegTrashAlt size={25} color="red" />
+                </button>
+              </div>
+            ) : (
+              <></>
+            )}
             <h3>
-              <b>Mensagem completa:</b> <br /><p>{mensagemSelected.mensagem}</p>
+              <b>Mensagem completa:</b> <br />
+              <p>{mensagemSelected.mensagem}</p>
             </h3>
           </>
         )}
@@ -177,19 +224,36 @@ const Mensagens = () => {
       <div className="widget">
         <div className="titulo-widget">
           <CiMail size={50} /> <h2>Mensagens</h2>
-          <div className="add" onClick={showModalAsync}>
-            <IoAddCircle size={60} color="#F6C233" />
-          </div>
+          {localStorage.getItem("tipo") === "admin" ? (
+            <div className="add" onClick={showModalAsync}>
+              <IoAddCircle size={60} color="#F6C233" />
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
         {mensagens.length > 0 ? (
           <div className="cards-widget">
             {mensagens.map((mensagem) => (
-              <div className="card" key={mensagem.id} onClick={() => showModal(mensagem)}>
+              <div
+                className="card"
+                key={mensagem.id}
+                onClick={() => showModal(mensagem)}
+              >
                 <div className="info-card-1">
-                  <FaRegClock size={30} /> <h3>{mensagem.created_at.split("T")[0]}</h3>
-                  <h3>{mensagem.created_at.split("T")[1].split("+")[0].slice(0, 5)}</h3>
+                  <FaRegClock size={30} />{" "}
+                  <h3>{new Intl.DateTimeFormat('pt-BR').format(new Date(mensagem.created_at))}</h3>
+                  {/* <h3>{mensagem.created_at.split("T")[0]}</h3> */}
+                  <h3>
+                    {mensagem.created_at
+                      .split("T")[1]
+                      .split("+")[0]
+                      .slice(0, 5)}
+                  </h3>
                 </div>
-                <p className="desc-card">{mensagemReduzida(mensagem.mensagem)}</p>
+                <p className="desc-card">
+                  {mensagemReduzida(mensagem.mensagem)}
+                </p>
               </div>
             ))}
           </div>

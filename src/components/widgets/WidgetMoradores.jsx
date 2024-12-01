@@ -52,7 +52,7 @@ const WidgetMoradores = () => {
                 <div className="info-card-2">
                   <FaBuildingCircleArrowRight size={30} />
                   <h4>Entrou em:</h4>
-                  <span>{morador.created_at.split("T")[0]}</span>
+                  <span>{new Intl.DateTimeFormat('pt-BR').format(new Date(morador.created_at))}</span>
                 </div>
               </div>
               <div className="desc-icon">

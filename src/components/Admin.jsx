@@ -1,10 +1,13 @@
 import React, {useEffect} from "react";
 import Logo from "../assets/logo360.png";
 import Navbar from "./Navbar";
-import { Outlet, useNavigate, } from "react-router-dom";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 
 const Admin = () => {
   const navigate = useNavigate()
+  const location = useLocation()
+  const {tipo, apt, bloco} = location.state || {}
+  console.log(tipo, apt, bloco)
   
   useEffect(()=>{
     if (!localStorage.getItem('authToken')) {
@@ -21,8 +24,8 @@ const Admin = () => {
     <section className="page-admin">
       <img className="logo" src={Logo} alt="" />
       <hr />
-        <Navbar />
-        <Outlet/>
+        <Navbar tipo={tipo} apt={apt} bloco={bloco} />
+        <Outlet context={{tipo,apt,bloco}}/>
     </section>
   );
 };

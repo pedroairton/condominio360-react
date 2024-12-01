@@ -40,5 +40,16 @@
                 background-color: vars.$amareloHover;
             }
         }
+        .btn-cadastro{
+            align-self: center;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 500;
+            letter-spacing: 1px;
+            font-size: 1.05rem;
+            width: 170px;
+            color: #f0f0f0;
+            background-color: vars.$azul;
+        }
     }
 }

@@ -52,7 +52,7 @@ const WidgetEncomendas = () => {
               >
                 <div className="info-card-1">
                   <PiPackageBold size={30} />
-                  <h3>{encomenda.created_at.split("T")[0]}</h3>
+                  <h3>{new Intl.DateTimeFormat('pt-BR').format(new Date(encomenda.created_at))}</h3>
                   <h3>
                     {encomenda.created_at
                       .split("T")[1]
