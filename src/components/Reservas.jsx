@@ -116,7 +116,7 @@ const Reservas = () => {
     // reajustar futuramente
     if (!horaInicio || !horaFim || !local) {
       //   alert("Por favor, preencha todos os campos.");
-      alert("Erro ao fazer reserva.");
+      alert("Erro ao fazer reserva. Preencha todos os campos");
       setConfirmLoading(false);
       return;
     }
@@ -184,7 +184,7 @@ const Reservas = () => {
   };
 
   return (
-    <div>
+    <section className="page-reservas">
       <Modal
         className="modal-reservas"
         title="Nova Reserva"
@@ -219,6 +219,7 @@ const Reservas = () => {
                 value={local}
                 onChange={(e) => setLocal(e.target.value)}
               >
+                <option value="">Selecione um local</option>
                 <option value="Churrasqueira">Churrasqueira</option>
                 <option value="Quadra">Quadra</option>
                 <option value="Campo">Campo</option>
@@ -415,7 +416,7 @@ const Reservas = () => {
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

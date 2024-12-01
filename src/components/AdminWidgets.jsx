@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import WidgetMoradores from "./widgets/WidgetMoradores";
 import WidgetMensagens from "./widgets/WidgetMensagens";
 import WidgetEncomendas from "./widgets/WidgetEncomendas";
@@ -13,6 +13,7 @@ import WidgetEncomendas from "./widgets/WidgetEncomendas";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { IoCalendarOutline } from "react-icons/io5";
 import { FaRegClock } from "react-icons/fa";
+import WidgetReservas from "./widgets/WidgetReservas";
 
 const AdminWidgets = () => {
   return (
@@ -22,8 +23,9 @@ const AdminWidgets = () => {
         <WidgetMensagens />
         <WidgetEncomendas />
         <WidgetMoradores />
+        <WidgetReservas />
         {/* reservas */}
-        <div className="widget">
+        {/* <div className="widget">
           <div className="titulo-widget">
             <FaRegCalendarAlt size={50} /> <h2>Reservas de Locais</h2>
           </div>
@@ -86,7 +88,7 @@ const AdminWidgets = () => {
           <button className="btn-widget">
             <Link to={"/admin/reservas"}>Todas as reservas</Link>
           </button>
-        </div>
+        </div> */}
       </div>
     </>
   );

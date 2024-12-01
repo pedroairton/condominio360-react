@@ -12,6 +12,7 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import { FaUserLarge } from "react-icons/fa6";
 import { FaRegMessage } from "react-icons/fa6";
 import { Modal, Button } from "antd";
+import { IoMenu } from "react-icons/io5";
 
 const Navbar = ({ tipo, apt, bloco }) => {
   const apiUrl =
@@ -225,9 +226,7 @@ const Navbar = ({ tipo, apt, bloco }) => {
               return (
                 <div className="mensagem">
                   <h2>Apt {conversa.autor}</h2>
-                  <p>
-                    {conversa.mensagem}
-                  </p>
+                  <p>{conversa.mensagem}</p>
                 </div>
               );
             })}
@@ -250,6 +249,9 @@ const Navbar = ({ tipo, apt, bloco }) => {
           </form>
         )}
       </Modal>
+      <div className="mobile">
+        <IoMenu size={80} color="white" />
+      </div>
       <div className="nav-mini">
         <GoTriangleLeft size={70} color="#FFF" />
       </div>
@@ -291,7 +293,7 @@ const Navbar = ({ tipo, apt, bloco }) => {
         {localStorage.getItem("tipo") === "admin" ? (
           <a onClick={showModal}>
             <FaUserLarge size={40} />
-            Usuários
+            <span>Usuários</span>
           </a>
         ) : (
           <></>
@@ -299,12 +301,12 @@ const Navbar = ({ tipo, apt, bloco }) => {
         {localStorage.getItem("tipo") === "admin" ? (
           <a onClick={showModalConversa}>
             <FaRegMessage size={40} />
-            Mensagens dos Usuários
+            <span>Mensagens dos Usuários</span>
           </a>
         ) : (
           <a onClick={showModalConversa}>
             <FaRegMessage size={40} />
-            Mensagem direta
+            <span>Mensagem direta</span>
           </a>
         )}
       </div>

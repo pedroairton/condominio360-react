@@ -494,7 +494,7 @@ const Encomendas = () => {
           </>
         )}
       </Modal>
-      <div className="widget">
+      <div className="widget widget-encomendas">
         <div className="titulo-widget">
           <TfiPackage size={50} /> <h2>Encomendas</h2>
           {localStorage.getItem("tipo") === "admin" ? (
@@ -516,18 +516,20 @@ const Encomendas = () => {
                 }}
               >
                 <div className="info-card-1">
-                  <PiPackageBold size={30} />
-                  <h3>
-                    {new Intl.DateTimeFormat("pt-BR").format(
-                      new Date(encomenda.created_at)
-                    )}
-                  </h3>
-                  <h3>
-                    {encomenda.created_at
-                      .split("T")[1]
-                      .split("+")[0]
-                      .slice(0, 5)}
-                  </h3>
+                  <div className="info-tit">
+                    <PiPackageBold size={30} />
+                    <h3>
+                      {new Intl.DateTimeFormat("pt-BR").format(
+                        new Date(encomenda.created_at)
+                      )}
+                    </h3>
+                    <h3>
+                      {encomenda.created_at
+                        .split("T")[1]
+                        .split("+")[0]
+                        .slice(0, 5)}
+                    </h3>
+                  </div>
                   <h4>
                     Entregue: <span>{encomenda.status}</span>
                   </h4>

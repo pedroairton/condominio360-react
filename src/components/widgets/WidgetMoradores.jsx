@@ -32,7 +32,7 @@ const WidgetMoradores = () => {
 
   const [moradores, setMoradores] = useState([]);
   return (
-    <div className="widget">
+    <div className="widget widget-morador">
       <div className="titulo-widget">
         <BsBuilding size={50} /> <h2>Moradores</h2>
       </div>
@@ -45,14 +45,20 @@ const WidgetMoradores = () => {
               onClick={() => showModal(morador)}
             >
               <div className="info-card-1">
-                <FaUserLarge size={30} />
-                <h3>
-                  Apt. {morador.apartamento} - Bloco {morador.bloco}
-                </h3>
+                <div className="icon-tit">
+                  <FaUserLarge size={30} />
+                  <h3>
+                    Apt. {morador.apartamento} - Bloco {morador.bloco}
+                  </h3>
+                </div>
                 <div className="info-card-2">
                   <FaBuildingCircleArrowRight size={30} />
                   <h4>Entrou em:</h4>
-                  <span>{new Intl.DateTimeFormat('pt-BR').format(new Date(morador.created_at))}</span>
+                  <span>
+                    {new Intl.DateTimeFormat("pt-BR").format(
+                      new Date(morador.created_at)
+                    )}
+                  </span>
                 </div>
               </div>
               <div className="desc-icon">

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineLoading } from "react-icons/ai";
 import { TfiPackage } from "react-icons/tfi";
 import { PiPackageBold } from "react-icons/pi";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const WidgetEncomendas = () => {
   const apiUrl =
@@ -36,48 +36,54 @@ const WidgetEncomendas = () => {
 
   const [encomendas, setEncomendas] = useState([]);
   return (
-    <div className="widget">
+    <div className="widget widget-encomendas">
       <div className="titulo-widget">
         <TfiPackage size={50} /> <h2>Encomendas</h2>
       </div>
       {encomendas.length > 0 ? (
-          <div className="cards-widget">
-            {encomendas.map((encomenda) => (
-              <div
-                className="card"
-                key={encomenda.id}
-                onClick={() => {
-                  showModal(encomenda);
-                }}
-              >
-                <div className="info-card-1">
+        <div className="cards-widget">
+          {encomendas.map((encomenda) => (
+            <div
+              className="card"
+              key={encomenda.id}
+              onClick={() => {
+                showModal(encomenda);
+              }}
+            >
+              <div className="info-card-1">
+                <div className="info-tit">
                   <PiPackageBold size={30} />
-                  <h3>{new Intl.DateTimeFormat('pt-BR').format(new Date(encomenda.created_at))}</h3>
+                  <h3>
+                    {new Intl.DateTimeFormat("pt-BR").format(
+                      new Date(encomenda.created_at)
+                    )}
+                  </h3>
                   <h3>
                     {encomenda.created_at
                       .split("T")[1]
                       .split("+")[0]
                       .slice(0, 5)}
                   </h3>
-                  <h4>
-                    Entregue: <span>{encomenda.status}</span>
-                  </h4>
                 </div>
-                <p className="desc-card">
-                  Encomenda para o apt. {encomenda.apt_vinculado}-
-                  {encomenda.bloco_apartamento}
-                </p>
+                <h4>
+                  Entregue: <span>{encomenda.status}</span>
+                </h4>
               </div>
-            ))}
-          </div>
-        ) : (
-          <div className="cards-widget">
-            <div className="load">
-              <AiOutlineLoading className="loading" size={90} />
-              <span>Carregando Encomendas...</span>
+              <p className="desc-card">
+                Encomenda para o apt. {encomenda.apt_vinculado}-
+                {encomenda.bloco_apartamento}
+              </p>
             </div>
+          ))}
+        </div>
+      ) : (
+        <div className="cards-widget">
+          <div className="load">
+            <AiOutlineLoading className="loading" size={90} />
+            <span>Carregando Encomendas...</span>
           </div>
-        )}
+        </div>
+      )}
       <button className="btn-widget">
         <Link to={"/admin/encomendas"}>Todas as encomendas</Link>
       </button>
