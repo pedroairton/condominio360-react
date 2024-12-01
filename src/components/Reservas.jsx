@@ -309,7 +309,7 @@ const Reservas = () => {
               <h3>Reservado por: </h3>
               <h3>
                 <b>
-                  Apt: {reservaSelected.apt_responsavel} - Bloco{" "}
+                  {reservaSelected.apt_responsavel} - {" "}
                   {reservaSelected.bloco_apt}
                 </b>
               </h3>
