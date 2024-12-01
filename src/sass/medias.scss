@@ -134,6 +134,31 @@
         }
       }
     }
+    .widgets{
+      .widget-reservas{
+        max-width: 300px;
+        width: 90%;
+        padding: 0.5rem;
+        margin: 0 auto;
+        .cards-widget{
+          .card{
+            height: 180px;
+            .info-card-1{
+              flex-direction: column;
+              align-items: flex-start;
+              .horarios{
+                position: unset;
+                margin-left: unset;
+                translate: 0;
+                .info-card-2{
+                  margin-left: unset;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
   .page-mensagens{
     .widget{
