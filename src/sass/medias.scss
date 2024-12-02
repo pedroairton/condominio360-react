@@ -36,7 +36,7 @@
   }
 }
 
-@media (max-width: 580px) {
+@media (max-width: 768px) {
   .page-login {
     .logo {
       width: 300px;
@@ -48,16 +48,16 @@
   .page-admin {
     .nav-bar {
       translate: 100% 0;
-      .nav-mini{
+      .nav-mini {
         display: none;
       }
-      .nav-logo{
-        .tipo-user{
-          h2{
+      .nav-logo {
+        .tipo-user {
+          h2 {
             font-size: 1.25rem;
           }
         }
-        .logo-navbar{
+        .logo-navbar {
           width: 130px;
         }
       }
@@ -70,63 +70,63 @@
         translate: -100%;
         top: 20px;
       }
-      .nav-links a{
+      .nav-links a {
         font-size: 1rem;
         padding: 10px;
         display: grid;
         grid-template-columns: 50px 1fr;
         justify-items: center;
-        span{
+        span {
           justify-self: start;
         }
       }
     }
-    .widgets{
+    .widgets {
       width: 100%;
-      .widget{
+      .widget {
         max-width: 300px;
         width: 90%;
         padding: 0.5rem;
         margin: 0 auto;
-        .cards-widget{
-          .card{
+        .cards-widget {
+          .card {
             height: 180px;
           }
         }
       }
-      .widget-morador{
+      .widget-morador {
         width: 90%;
         padding: 0.5rem;
         margin: 0 auto;
-        .cards-widget{
-          .card{
+        .cards-widget {
+          .card {
             height: 180px;
-            .info-card-1{
+            .info-card-1 {
               flex-direction: column;
               align-items: flex-start;
-              .info-card-2{
+              .info-card-2 {
                 margin-left: unset;
               }
             }
-            .desc-card{
+            .desc-card {
               font-size: 1.25rem;
             }
           }
         }
       }
-      .widget-encomendas{
-        .cards-widget{
-          .card{
-            .info-card-1{
+      .widget-encomendas {
+        .cards-widget {
+          .card {
+            .info-card-1 {
               display: flex;
               flex-direction: column;
               align-items: flex-start;
-              .info-tit{
+              .info-tit {
                 display: flex;
                 gap: 1rem;
                 align-items: center;
               }
-              h4{
+              h4 {
                 margin-left: unset;
               }
             }
@@ -134,23 +134,23 @@
         }
       }
     }
-    .widgets{
-      .widget-reservas{
+    .widgets {
+      .widget-reservas {
         max-width: 300px;
         width: 90%;
         padding: 0.5rem;
         margin: 0 auto;
-        .cards-widget{
-          .card{
+        .cards-widget {
+          .card {
             height: 180px;
-            .info-card-1{
+            .info-card-1 {
               flex-direction: column;
               align-items: flex-start;
-              .horarios{
+              .horarios {
                 position: unset;
                 margin-left: unset;
                 translate: 0;
-                .info-card-2{
+                .info-card-2 {
                   margin-left: unset;
                 }
               }
@@ -160,83 +160,83 @@
       }
     }
   }
-  .page-mensagens{
-    .widget{
+  .page-mensagens {
+    .widget {
       width: 90%;
       padding: 0.5rem;
       margin: 0 auto;
-      .cards-widget{
-        .card{
+      .cards-widget {
+        .card {
           height: 180px;
-          .desc-card{
+          .desc-card {
             font-size: 1rem;
           }
         }
       }
     }
   }
-  .page-mensagens{
-    .widget{
-      .cards-widget{
-        .card{
+  .page-mensagens {
+    .widget {
+      .cards-widget {
+        .card {
           height: 180px;
         }
       }
     }
   }
-  .page-moradores{
-    .widget-morador{
+  .page-moradores {
+    .widget-morador {
       width: 90%;
       max-width: 300px;
       padding: 0.5rem;
       margin: 0 auto;
-      .cards-widget{
-        .card{
+      .cards-widget {
+        .card {
           height: 180px;
-          .info-card-1{
+          .info-card-1 {
             flex-direction: column;
             align-items: flex-start;
-            .info-tit{
+            .info-tit {
               display: flex;
               gap: 1rem;
               align-items: center;
             }
-            .info-card-2{
+            .info-card-2 {
               margin-left: unset;
             }
           }
-          .desc-card{
+          .desc-card {
             font-size: 1.25rem;
           }
         }
       }
     }
   }
-  .page-encomendas{
-    .widget{
+  .page-encomendas {
+    .widget {
       max-width: 300px;
       width: 90%;
       padding: 0.5rem;
       margin: 0 auto;
-      .cards-widget{
-        .card{
+      .cards-widget {
+        .card {
           height: 180px;
         }
       }
     }
-    .widget-encomendas{
-      .cards-widget{
-        .card{
-          .info-card-1{
+    .widget-encomendas {
+      .cards-widget {
+        .card {
+          .info-card-1 {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            .info-tit{
+            .info-tit {
               display: flex;
               gap: 1rem;
               align-items: center;
             }
-            h4{
+            h4 {
               margin-left: unset;
             }
           }
@@ -244,23 +244,23 @@
       }
     }
   }
-  .page-reservas{
-    .widget{
+  .page-reservas {
+    .widget {
       max-width: 300px;
       width: 90%;
       padding: 0.5rem;
       margin: 0 auto;
-      .cards-widget{
-        .card{
+      .cards-widget {
+        .card {
           height: 180px;
-          .info-card-1{
+          .info-card-1 {
             flex-direction: column;
             align-items: flex-start;
-            .horarios{
+            .horarios {
               position: unset;
               margin-left: unset;
               translate: 0;
-              .info-card-2{
+              .info-card-2 {
                 margin-left: unset;
               }
             }
@@ -270,12 +270,28 @@
     }
   }
 }
-.page-encomendas, .page-admin{
-  .widget-encomendas{
-    .cards-widget{
-      .card{
-        .info-card-1{
-          .info-tit{
+.page-moradores {
+  .widget-morador {
+    .cards-widget {
+      .card {
+        .info-card-1 {
+          .info-tit {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+          }
+        }
+      }
+    }
+  }
+}
+.page-encomendas,
+.page-admin {
+  .widget-encomendas {
+    .cards-widget {
+      .card {
+        .info-card-1 {
+          .info-tit {
             display: flex;
             gap: 1rem;
             align-items: center;
